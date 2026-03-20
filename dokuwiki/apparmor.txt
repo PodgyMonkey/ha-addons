@@ -1,10 +1,14 @@
 #include <tunables/global>
 
-profile dokuwiki flags=(attach_disconnected,mediate_deleted,complain) {
+profile dokuwiki flags=(attach_disconnected,mediate_deleted) {
   #include <abstractions/base>
 
   file,
   signal (send) set=(kill,term,int,hup,cont),
+
+  # Capabilities required by init-dokuwiki (bash, rm, chown)
+  capability dac_override,
+  capability chown,
 
   # S6-Overlay
   /init ix,
@@ -48,9 +52,28 @@ profile dokuwiki flags=(attach_disconnected,mediate_deleted,complain) {
   /run/php-fpm/ rw,
   /run/php-fpm/** rw,
 
-  profile nginx flags=(attach_disconnected,mediate_deleted,complain) {
+  profile nginx flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
     signal (receive) peer=*_dokuwiki,
+
+    # Capabilities required for startup and privilege drop
+    capability dac_override,
+    capability chown,
+    capability setgid,
+    capability setuid,
+
+    # System files
+    /etc/ssl/openssl.cnf r,
+    /etc/passwd r,
+    /etc/group r,
+
+    # nginx temp dirs (client_body, proxy, fastcgi, uwsgi, scgi)
+    /var/lib/nginx/ rw,
+    /var/lib/nginx/** rwk,
+
+    # stdout/stderr logging via /proc/pid/fd
+    /proc/*/fd/* rw,
+
     /usr/sbin/nginx r,
     /etc/nginx/** r,
     /var/www/dokuwiki/** r,
@@ -61,9 +84,29 @@ profile dokuwiki flags=(attach_disconnected,mediate_deleted,complain) {
     /dev/tty rw,
   }
 
-  profile php-fpm flags=(attach_disconnected,mediate_deleted,complain) {
+  profile php-fpm flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
     signal (receive) peer=*_dokuwiki,
+
+    # Capabilities required for startup and privilege drop
+    capability setgid,
+    capability setuid,
+
+    # System files
+    /etc/ssl/openssl.cnf r,
+    /etc/passwd r,
+    /etc/group r,
+    /etc/hosts r,
+    /etc/resolv.conf r,
+    /etc/ssl/certs/** r,
+
+    # php-fpm error log
+    /var/log/php83/ rw,
+    /var/log/php83/** rwk,
+
+    # PHP Unicode data
+    /usr/share/icu/** r,
+
     /usr/sbin/php-fpm83 r,
     /etc/php83/** r,
     /var/www/dokuwiki/** r,

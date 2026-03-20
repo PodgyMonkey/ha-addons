@@ -25,6 +25,12 @@ Versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.1.4] - 2026-03-20
+
+### Changed
+- AppArmor profile switched to enforcing mode
+- Added missing capabilities and system file rules discovered via audit log
+
 ## [0.1.3] - 2026-03-20
 
 ### Added
