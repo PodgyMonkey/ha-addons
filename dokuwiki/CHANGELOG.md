@@ -25,6 +25,11 @@ Versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-03-20
+
+### Fixed
+- Moved CHANGELOG.md into add-on subfolder so it appears in the HA changelog dialog
+
 ## [0.1.1] - 2026-03-20
 
 ### Changed
