@@ -1,0 +1,5 @@
+#!/bin/sh
+# $1 = exit code (256 = killed by signal), $2 = signal number
+# Suppress warning on clean exit (0) or signal-based stop from s6-rc (256)
+[ "${1}" -eq 0 ] || [ "${1}" -eq 256 ] && exit 0
+echo "WARNING: php-fpm exited unexpectedly"

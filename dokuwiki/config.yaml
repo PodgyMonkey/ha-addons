@@ -1,0 +1,31 @@
+name: DokuWiki
+description: >-
+  A simple, self-contained wiki engine that stores data in plain text files.
+  No database required
+version: "0.1.0"
+slug: dokuwiki
+image: ghcr.io/podgymonkey/amd64-dokuwiki
+url: https://github.com/PodgyMonkey/ha-addons#readme
+arch:
+  - amd64
+init: false
+homeassistant_api: false
+hassio_api: true
+hassio_role: default
+watchdog: "http://[HOST]:8080/"
+ingress: true
+ingress_port: 8080
+panel_icon: mdi:notebook
+panel_title: DokuWiki
+map:
+  - share:rw
+options:
+  log_level: info
+  php_upload_limit: 16M
+  php_memory_limit: 256M
+  php_timezone: UTC
+schema:
+  log_level: list(trace|debug|info|notice|warning|error|fatal)
+  php_upload_limit: str
+  php_memory_limit: str
+  php_timezone: str

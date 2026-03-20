@@ -1,0 +1,3 @@
+description: >-
+  Open the add-on web UI and complete the initial setup via install.php.
+  Data is persisted to /share/dokuwiki.

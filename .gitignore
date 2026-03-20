@@ -1,0 +1,22 @@
+# Environment variables - never commit secrets
+.env
+.env.local
+.env*.local
+
+# Claude Code internal state (project config lives in .mcp.json instead)
+.claude/
+
+# MCP server config — may contain API keys
+.mcp.json
+
+# Dev-only context files — kept locally, not for public repo
+CLAUDE.md
+dokuwiki/CLAUDE.md
+dokuwiki-addon-context.md
+dokuwiki-phase1-test-plan.md
+whats-next.md
+maintenance.md
+
+# OS
+Thumbs.db
+desktop.ini
