@@ -1,0 +1,75 @@
+#include <tunables/global>
+
+profile dokuwiki flags=(attach_disconnected,mediate_deleted,complain) {
+  #include <abstractions/base>
+
+  file,
+  signal (send) set=(kill,term,int,hup,cont),
+
+  # S6-Overlay
+  /init ix,
+  /bin/** ix,
+  /usr/bin/** ix,
+  /run/{s6,s6-rc*,service}/** ix,
+  /package/** ix,
+  /command/** ix,
+  /etc/services.d/** rwix,
+  /etc/cont-init.d/** rwix,
+  /etc/cont-finish.d/** rwix,
+  /run/{,**} rwk,
+  /dev/tty rw,
+
+  # Bashio
+  /usr/lib/bashio/** ix,
+  /tmp/** rwk,
+
+  # Supervisor API
+  network inet stream,
+
+  # Add-on data (options.json)
+  /data/** rw,
+
+  # Wiki content
+  /share/dokuwiki/** rw,
+
+  # DokuWiki webroot — init-dokuwiki removes install.php and creates symlinks here
+  /var/www/dokuwiki/** rw,
+
+  # nginx
+  /usr/sbin/nginx cx -> nginx,
+  /etc/nginx/** r,
+  /run/nginx/ rw,
+  /run/nginx/** rw,
+  /var/log/nginx/** rw,
+
+  # php-fpm
+  /usr/sbin/php-fpm83 cx -> php-fpm,
+  /etc/php83/** r,
+  /run/php-fpm/ rw,
+  /run/php-fpm/** rw,
+
+  profile nginx flags=(attach_disconnected,mediate_deleted,complain) {
+    #include <abstractions/base>
+    signal (receive) peer=*_dokuwiki,
+    /usr/sbin/nginx r,
+    /etc/nginx/** r,
+    /var/www/dokuwiki/** r,
+    /share/dokuwiki/** r,
+    /run/nginx/** rw,
+    /var/log/nginx/** rw,
+    /run/php-fpm/** rw,
+    /dev/tty rw,
+  }
+
+  profile php-fpm flags=(attach_disconnected,mediate_deleted,complain) {
+    #include <abstractions/base>
+    signal (receive) peer=*_dokuwiki,
+    /usr/sbin/php-fpm83 r,
+    /etc/php83/** r,
+    /var/www/dokuwiki/** r,
+    /share/dokuwiki/** rw,
+    /run/php-fpm/** rw,
+    /tmp/** rwk,
+    /dev/tty rw,
+  }
+}
