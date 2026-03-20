@@ -16,7 +16,7 @@ Versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 1. Update `version` in `dokuwiki/config.yaml`
 2. In this file: rename `[Unreleased]` to `[x.y.z] - YYYY-MM-DD`, add a new empty `[Unreleased]` section above it
-3. `git add -A && git commit -m "Release vX.Y.Z"`
+3. `git add dokuwiki/config.yaml dokuwiki/CHANGELOG.md && git commit -m "Release vX.Y.Z"`
 4. `git push`
 5. Create a GitHub Release tagged `X.Y.Z` — Actions publishes the image to GHCR
 6. HA shows an update notification for existing installs
@@ -24,6 +24,14 @@ Versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ---
 
 ## [Unreleased]
+
+## [1.0.0] - 2026-03-20
+
+First stable production release. All components verified on production HA (HAOS 17.1).
+
+### Added
+- Custom AppArmor security profile (enforcing mode) — restricts nginx and php-fpm to minimum required access
+- Data persistence to `/share/dokuwiki` verified to survive uninstall, reinstall, and upgrade
 
 ## [0.1.4] - 2026-03-20
 
