@@ -25,6 +25,11 @@ Versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.1.2] - 2026-03-21
+
+### Fixed
+- Added `host_network: true` so port 8080 binds directly to the host network, making it accessible from the LAN (Docker NAT was silently blocked by HAOS nftables)
+
 ## [1.1.1] - 2026-03-21
 
 ### Fixed
