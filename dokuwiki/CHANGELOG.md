@@ -25,6 +25,11 @@ Versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.1.4] - 2026-03-21
+
+### Changed
+- Removed ingress (was preventing standard Docker port mapping from working); DokuWiki now accessible directly on port 8080
+
 ## [1.1.3] - 2026-03-21
 
 ### Fixed

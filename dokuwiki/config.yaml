@@ -2,7 +2,7 @@ name: DokuWiki
 description: >-
   A simple, self-contained wiki engine that stores data in plain text files.
   No database required
-version: "1.1.3"
+version: "1.1.4"
 slug: dokuwiki
 image: ghcr.io/podgymonkey/amd64-dokuwiki
 url: https://github.com/PodgyMonkey/ha-addons#readme
@@ -17,8 +17,6 @@ ports:
   8080/tcp: 8080
 ports_description:
   8080/tcp: DokuWiki HTTP
-ingress: true
-ingress_port: 8080
 panel_icon: mdi:notebook
 panel_title: DokuWiki
 map:
