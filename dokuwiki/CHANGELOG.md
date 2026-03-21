@@ -25,6 +25,13 @@ Versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.1.5] - 2026-03-21
+
+### Changed
+- Removed `hassio_api` and `hassio_role` (forced container onto hassio Docker network, blocking port forwarding)
+- Removed Supervisor API call for ingress URL from init script (no longer needed without ingress)
+- Added `webui` field so HA shows an "Open Web UI" button linking directly to port 8080
+
 ## [1.1.4] - 2026-03-21
 
 ### Changed

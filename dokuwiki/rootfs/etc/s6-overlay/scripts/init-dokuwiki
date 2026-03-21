@@ -46,21 +46,6 @@ php_admin_value[memory_limit] = ${MEMORY_LIMIT}
 php_admin_value[date.timezone] = ${TIMEZONE}
 EOF
 
-# Step 4 — set basedir from Supervisor API so DokuWiki generates correct asset URLs
-# Written to local.protected.php so it always wins and never overwrites installer settings
-INGRESS_URL=""
-if INGRESS_URL=$(curl -sf \
-        -H "Authorization: Bearer ${SUPERVISOR_TOKEN}" \
-        http://supervisor/addons/self/info \
-        | jq -r '.data.ingress_url'); then
-    bashio::log.info "$(date '+%Y-%m-%d') Setting basedir: ${INGRESS_URL}"
-    printf '<?php\n$conf['"'"'basedir'"'"'] = '"'"'%s'"'"';\n' "${INGRESS_URL}" \
-        > /share/dokuwiki/conf/local.protected.php
-else
-    INGRESS_URL=""
-    bashio::log.warning "$(date '+%Y-%m-%d') Supervisor API unavailable — basedir not set (expected in plain-Docker test)"
-fi
-
 # Step 5 — remove install.php if setup is complete (users.auth.php contains a real user entry)
 # NOTE: conf/dokuwiki.php is NOT a reliable indicator — it is seeded from dist on first run.
 # A non-comment line in users.auth.php means install.php has been completed.
