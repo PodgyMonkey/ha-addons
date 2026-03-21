@@ -25,6 +25,11 @@ Versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-03-21
+
+### Fixed
+- Removed nginx IP restriction that blocked direct connections on port 8080 (only HA ingress proxy was allowed)
+
 ## [1.1.0] - 2026-03-21
 
 ### Added
