@@ -25,6 +25,11 @@ Versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.1.7] - 2026-03-21
+
+### Fixed
+- Added `listen [::]:8080` to nginx so DokuWiki is reachable via IPv6 (e.g. `homeassistant.local` on networks where mDNS resolves to IPv6 link-local)
+
 ## [1.1.6] - 2026-03-21
 
 ### Fixed
