@@ -25,6 +25,11 @@ Versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-03-21
+
+### Added
+- Exposed port 8080 externally to allow direct HTTP access for API/scripting use (e.g. XMLRPC)
+
 ## [1.0.0] - 2026-03-20
 
 First stable production release. All components verified on production HA (HAOS 17.1).
