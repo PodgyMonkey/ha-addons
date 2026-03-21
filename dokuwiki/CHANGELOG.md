@@ -25,6 +25,11 @@ Versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.1.6] - 2026-03-21
+
+### Fixed
+- Locked `basedir = /` via `local.protected.php` (DokuWiki autodetection produced `/null/` when served directly on port 8080, breaking all CSS/JS asset URLs)
+
 ## [1.1.5] - 2026-03-21
 
 ### Changed
