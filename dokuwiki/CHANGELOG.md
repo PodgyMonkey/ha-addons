@@ -25,6 +25,11 @@ Versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.1.3] - 2026-03-21
+
+### Fixed
+- Reverted `host_network: true` (caused nginx to crash binding to port 80 with insufficient privileges); restored standard Docker port mapping for port 8080
+
 ## [1.1.2] - 2026-03-21
 
 ### Fixed
