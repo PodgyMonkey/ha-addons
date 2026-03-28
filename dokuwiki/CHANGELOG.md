@@ -25,6 +25,14 @@ Versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-03-28
+
+### Added
+
+- Re-enabled HA ingress (port 8099) alongside direct port 8080
+- Sidebar toggle restored in add-on configuration page
+- DokuWiki `basedir` is now resolved dynamically per request: ingress requests receive the correct ingress path prefix; direct port 8080 requests continue to use `/`
+
 ## [1.1.7] - 2026-03-21
 
 ### Fixed

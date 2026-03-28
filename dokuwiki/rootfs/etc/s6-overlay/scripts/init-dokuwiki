@@ -46,10 +46,14 @@ php_admin_value[memory_limit] = ${MEMORY_LIMIT}
 php_admin_value[date.timezone] = ${TIMEZONE}
 EOF
 
-# Step 4 — lock basedir to / (autodetection produces /null/ when served on port 8080)
+# Step 4 — write dynamic basedir to local.protected.php
+# Ingress requests (port 8099): nginx sets DOKUWIKI_INGRESS_PATH FastCGI param from X-Ingress-Path header.
+# Direct requests (port 8080): param is absent, falls back to '/'.
 cat > /share/dokuwiki/conf/local.protected.php << 'PHP'
 <?php
-$conf['basedir'] = '/';
+$conf['basedir'] = isset($_SERVER['DOKUWIKI_INGRESS_PATH']) && $_SERVER['DOKUWIKI_INGRESS_PATH'] !== ''
+    ? $_SERVER['DOKUWIKI_INGRESS_PATH']
+    : '/';
 PHP
 
 # Step 5 — remove install.php if setup is complete (users.auth.php contains a real user entry)
