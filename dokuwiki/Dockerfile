@@ -10,6 +10,8 @@ RUN apk add --no-cache \
     php83-fpm \
     php83-gd \
     php83-xml \
+    php83-dom \
+    php83-curl \
     php83-mbstring \
     php83-zip \
     php83-intl \

@@ -2,7 +2,7 @@ name: DokuWiki
 description: >-
   A simple, self-contained wiki engine that stores data in plain text files.
   No database required
-version: "1.2.0"
+version: "1.2.1"
 slug: dokuwiki
 image: ghcr.io/podgymonkey/amd64-dokuwiki
 url: https://github.com/PodgyMonkey/ha-addons#readme

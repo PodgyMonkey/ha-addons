@@ -25,6 +25,12 @@ Versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.2.1] - 2026-03-28
+
+### Fixed
+- Added `php83-dom` PHP extension — fixes `DOMDocument` error when installing the Mikio template
+- Added `php83-curl` PHP extension — fixes Bootstrap3 `css.php` returning 503
+
 ## [1.2.0] - 2026-03-28
 
 ### Added
